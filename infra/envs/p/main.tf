@@ -24,11 +24,19 @@ module "network" {
   enable_nat         = true
 }
 
-module "storage" {
+module "storage_image" {
   source = "../../modules/storage"
 
-  name              = "${var.project_name}-${var.environment}"
-  bucket_name       = "${var.project_name}-${var.environment}-assets"
+  name              = "${var.project_name}-image"
+  bucket_name       = "${var.project_name}-${var.environment}-image"
+  enable_versioning = true
+}
+
+module "storage_web" {
+  source = "../../modules/storage"
+
+  name              = "${var.project_name}-web"
+  bucket_name       = "${var.project_name}-${var.environment}-web"
   enable_versioning = true
 }
 
