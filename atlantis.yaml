@@ -1,0 +1,30 @@
+version: 3
+projects:
+  - name: ainews-global
+    dir: infra/global
+    workspace: default
+    autoplan:
+      when_modified: ["*.tf", "*.tfvars"]
+      enabled: true
+
+  - name: ainews-dev
+    dir: infra/envs/dev
+    workspace: default
+    autoplan:
+      when_modified: ["*.tf", "*.tfvars", "../../modules/**/*.tf"]
+      enabled: true
+
+  - name: ainews-staging
+    dir: infra/envs/staging
+    workspace: default
+    autoplan:
+      when_modified: ["*.tf", "*.tfvars", "../../modules/**/*.tf"]
+      enabled: true
+
+  - name: ainews-prod
+    dir: infra/envs/prod
+    workspace: default
+    autoplan:
+      when_modified: ["*.tf", "*.tfvars", "../../modules/**/*.tf"]
+      enabled: true
+    apply_requirements: [approved]
